@@ -1,0 +1,29 @@
+INSERT INTO Members(full_name, department, phone, email, join_date)
+VALUES
+('Arun Kumar', 'Computer Science', '9876543210', 'arun@gmail.com', CURDATE()),
+('Priya', 'Mathematics', '9876543211', 'priya@gmail.com', CURDATE());
+
+INSERT INTO Books(title, author, category, isbn, quantity, available_copies)
+VALUES
+('Database System Concepts', 'Korth', 'Database', 'ISBN001', 10, 10),
+('Python Programming', 'Guido', 'Programming', 'ISBN002', 5, 5);
+
+INSERT INTO Librarians(full_name, username, password)
+VALUES
+('Admin User', 'librarian1', 'admin123');
+
+INSERT INTO Issued_Books(member_id, book_id, issue_date, due_date)
+VALUES
+(1, 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 15 DAY));
+
+UPDATE Issued_Books
+SET return_date = CURDATE()
+WHERE issue_id = 1;
+
+SELECT 
+    Members.full_name,
+    Books.title,
+    Issued_Books.issue_date
+FROM Issued_Books
+JOIN Members ON Members.member_id = Issued_Books.member_id
+JOIN Books ON Books.book_id = Issued_Books.book_id;

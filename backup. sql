@@ -1,0 +1,7 @@
+-- Backup File for Library Management Database System
+
+CREATE DATABASE IF NOT EXISTS library_management;
+
+USE library_management;
+
+-- Backup completed successfully
